@@ -1,0 +1,117 @@
+<section class="page-shell">
+  <div class="hero-card">
+    <div>
+      <span class="eyebrow">Technical test</span>
+      <h1>Vehicle list</h1>
+      <p>
+        Mocked data structure ready to evolve into a real API while keeping the
+        expected CRUD contract.
+      </p>
+    </div>
+
+    <div class="summary-card">
+      <span>Total records</span>
+      <strong>{{ totalVehicles() }}</strong>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="table-header">
+      <div>
+        <h2>Registered vehicles</h2>
+        <p>Initial view with all required fields from the challenge.</p>
+      </div>
+
+      <p class="table-meta">
+        Showing {{ rangeStart() }}-{{ rangeEnd() }} of {{ totalVehicles() }}
+      </p>
+    </div>
+
+    <label class="search-field">
+      <span>Search by license plate, model or brand</span>
+      <input
+        #searchInput
+        type="search"
+        placeholder="Try Toyota, Onix or BRA2E19"
+        [value]="searchTerm()"
+        (input)="updateSearchTerm(searchInput.value)"
+      />
+    </label>
+
+    <div class="table-wrapper">
+      <table aria-label="Vehicle list">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>License Plate</th>
+            <th>Chassis</th>
+            <th>Registration</th>
+            <th>Model</th>
+            <th>Brand</th>
+            <th>Year</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @if (visibleVehicles(); as vehicles) {
+            @for (vehicle of vehicles; track vehicle.id) {
+              <tr>
+                <td data-label="ID">{{ vehicle.id }}</td>
+                <td data-label="License Plate">
+                  <span class="plate">{{ vehicle.licensePlate }}</span>
+                </td>
+                <td data-label="Chassis">{{ vehicle.chassis }}</td>
+                <td data-label="Registration">{{ vehicle.registrationNumber }}</td>
+                <td data-label="Model">{{ vehicle.model }}</td>
+                <td data-label="Brand">{{ vehicle.brand }}</td>
+                <td data-label="Year">{{ vehicle.year }}</td>
+              </tr>
+            } @empty {
+              <tr>
+                <td class="empty-state" [attr.colspan]="totalColumns">
+                  No vehicles found.
+                </td>
+              </tr>
+            }
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination" aria-label="Pagination">
+      <button
+        type="button"
+        class="pagination-button"
+        [disabled]="isPreviousDisabled()"
+        (click)="goToPreviousPage()"
+      >
+        Previous
+      </button>
+
+      <div class="pagination-pages">
+        @if (filteredVehiclesCount() > 0) {
+          @for (page of pageNumbers(); track page) {
+          <button
+            type="button"
+            class="page-number"
+            [class.active]="page === currentPage()"
+            [attr.aria-current]="page === currentPage() ? 'page' : null"
+            (click)="goToPage(page)"
+          >
+            {{ page }}
+          </button>
+          }
+        }
+      </div>
+
+      <button
+        type="button"
+        class="pagination-button"
+        [disabled]="isNextDisabled()"
+        (click)="goToNextPage()"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</section>
