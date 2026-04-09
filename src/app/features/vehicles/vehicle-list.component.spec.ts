@@ -55,7 +55,7 @@ describe('VehicleListComponent', () => {
     searchInput.dispatchEvent(new Event('input'));
     fixture.detectChanges();
 
-    expect(compiled.textContent).toContain('Showing 1-3 of 3');
+    expect(compiled.textContent).toContain('Showing 1-3 of 14');
     expect(compiled.textContent).toContain('Corolla XEi');
     expect(compiled.textContent).toContain('Yaris XLS');
     expect(compiled.textContent).toContain('Hilux SRX');
