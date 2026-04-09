@@ -23,9 +23,20 @@
       </div>
 
       <p class="table-meta">
-        Showing {{ rangeStart() }}-{{ rangeEnd() }} of {{ totalVehicles() }}
+        Showing {{ rangeStart() }}-{{ rangeEnd() }} of {{ filteredVehiclesCount() }}
       </p>
     </div>
+
+    <label class="search-field">
+      <span>Search by license plate, model or brand</span>
+      <input
+        #searchInput
+        type="search"
+        placeholder="Try Toyota, Onix or BRA2E19"
+        [value]="searchTerm()"
+        (input)="updateSearchTerm(searchInput.value)"
+      />
+    </label>
 
     <div class="table-wrapper">
       <table aria-label="Vehicle list">
@@ -78,7 +89,8 @@
       </button>
 
       <div class="pagination-pages">
-        @for (page of pageNumbers(); track page) {
+        @if (filteredVehiclesCount() > 0) {
+          @for (page of pageNumbers(); track page) {
           <button
             type="button"
             class="page-number"
@@ -88,6 +100,7 @@
           >
             {{ page }}
           </button>
+          }
         }
       </div>
 

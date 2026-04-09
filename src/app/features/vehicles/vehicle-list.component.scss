@@ -106,6 +106,37 @@ p {
   color: #5d7469;
 }
 
+.search-field {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-field span {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #5d7469;
+}
+
+.search-field input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid rgba(20, 35, 28, 0.14);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #163a2d;
+  font: inherit;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-field input:focus {
+  border-color: #2c6b56;
+  box-shadow: 0 0 0 4px rgba(44, 107, 86, 0.12);
+}
+
 .table-wrapper {
   overflow-x: auto;
 }
