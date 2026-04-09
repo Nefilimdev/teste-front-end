@@ -100,6 +100,12 @@ p {
   margin-bottom: 20px;
 }
 
+.table-meta {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #5d7469;
+}
+
 .table-wrapper {
   overflow-x: auto;
 }
@@ -147,6 +153,52 @@ tbody tr:hover {
   color: #5d7469;
 }
 
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(20, 35, 28, 0.1);
+}
+
+.pagination-pages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.pagination-button,
+.page-number {
+  border: 1px solid rgba(20, 35, 28, 0.14);
+  background: #fff;
+  color: #163a2d;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font: inherit;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.pagination-button:hover:not(:disabled),
+.page-number:hover {
+  transform: translateY(-1px);
+  background: #edf7f2;
+}
+
+.page-number.active {
+  background: #163a2d;
+  color: #f5fbf8;
+  border-color: #163a2d;
+}
+
+.pagination-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
 @media (max-width: 768px) {
   .page-shell {
     padding: 24px 16px;
@@ -159,6 +211,12 @@ tbody tr:hover {
   }
 
   .hero-card {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .table-header,
+  .pagination {
     align-items: start;
     flex-direction: column;
   }
